@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.mapper.AdminMapper">
+    <select id="loginByNameByPassword" resultType="com.java.pojo.Admin">
+        select id,name,password from admin where name=#{name} and password=#{password}
+    </select>
+    <update id="editAdmin" parameterType="com.java.pojo.Admin">
+        update admin
+        <set>
+            <if test="admin.name != null and admin.name != ''">name = #{admin.name},</if>
+            <if test="admin.password != null and admin.password != ''">password = #{admin.password}</if>
+        </set>
+        where id = #{admin.id}
+    </update>
+    <insert id="addAdmin" parameterType="com.java.pojo.Admin">
+        insert into admin
+        <set>
+            name = #{admin.name},
+            password = #{admin.password}
+        </set>
+    </insert>
+    <!--<insert id="insert">
+        insert into users (id, name, funkyNumber, roundingMode) values (
+        #{id}, #{name}, #{funkyNumber}, #{roundingMode}
+        )
+    </insert>
+
+    <resultMap type="org.apache.ibatis.submitted.rounding.User" id="usermap2">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="funkyNumber" property="funkyNumber"/>
+        <result column="roundingMode" property="roundingMode" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+    </resultMap>
+    <select id="getUser2" resultMap="usermap2">
+        select * from users2
+    </select>
+    <insert id="insert2">
+        insert into users2 (id, name, funkyNumber, roundingMode) values (
+        #{id}, #{name}, #{funkyNumber}, #{roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+        )
+    </insert>
+-->
+</mapper>

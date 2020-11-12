@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>后台登录</title>
+    <!-- Bootstrap Styles-->
+    <link th:href="@{../../static/css/login/normalize.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{../../static/css/custom-login.css}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" th:href="@{../../static/js/jQueryMessage/css/message.skin.css}" />
+</head>
+
+<body>
+	<canvas></canvas>
+	<div class="login">
+		<h1>CMS</h1>
+		<form method="post" th:action="@{/login}" id="loginForm">
+			<div class="login-form-row">
+				<input type="text" id="name" name="name" placeholder="用户名" required="required" />
+			</div>
+			<div class="login-form-row">
+				<input type="password" id="password" name="password" placeholder="密码" required="required" />
+			</div>
+			<div class="login-form-row">
+				<button type="submit" id="login" class="btn btn-primary btn-block btn-large" onclick="login();">登录</button>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" th:src="@{../../static/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{../../static/js/jQueryMessage/js/jquery.plugin.message.js}"></script>
+    <script type="text/javascript" th:src="@{../../static/js/vector.js}"></script>
+    <script type="text/javascript">
+		$("#login").click(function () {
+			console.log("点击了登录2")
+			login();
+		});
+		function login(){
+			var name = $("#name").val();
+			var password = $("#password").val();
+			if (name == undefined || name == "") {
+				alert("请输入用户名");
+				return;
+			}
+			if (password == undefined || password == "") {
+				alert("请输入密码");
+				return;
+			}
+		}
+	</script>
+</body>
+</html>
